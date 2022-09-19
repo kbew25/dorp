@@ -1,0 +1,21 @@
+/**
+ * @file
+ * Colors.
+ */
+
+// Styleguide: Brand Colors
+$c-primary: #bada55;
+
+// Styleguide: Greyscale Colors
+$white: #fff;
+$black: #000;
+
+// Styleguide: Other
+$messages--status: #325e1c;
+$messages--status--bg: rgba(lighten($messages--status, 60), 0.3);
+$messages--warning: #734c00;
+$messages--warning--bg: rgba(lighten($messages--warning, 60), 0.3);
+$messages--error: #a51b00;
+$messages--error--bg: rgba(lighten($messages--error, 60), 0.3);
+$tabs--active: #eee;
+$tabs--hover: #f5f5f5;

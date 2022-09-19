@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming.
+ */
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function dorp_page_attachments_alter(array &$page) {
+  // Load html js class faster.
+  $page['#attached']['html_head'][] = [
+    [
+      '#type' => 'html_tag',
+      '#tag' => 'script',
+      '#value' => 'document.documentElement.className = "js";',
+      '#weight' => -999,
+    ],
+    'load_js',
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function dorp_preprocess_block(array &$variables) {
+  // Check front page for branding block.
+  if ($variables['base_plugin_id'] == 'system_branding_block') {
+    $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
+    $variables['#cache']['contexts'][] = 'url.path.is_front';
+  }
+}

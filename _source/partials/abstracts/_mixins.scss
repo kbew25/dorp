@@ -1,0 +1,176 @@
+/**
+ * @file
+ * Mixins.
+ */
+
+// stylelint-disable no-important
+
+/**
+ * Min-width breakpoints.
+ *
+ * @param {string} $bp
+ *   Breakpoint size.
+ *
+ * @group mixins
+ */
+@mixin breakpoint($bp) {
+  @if $bp == xl {
+    @media only screen and (min-width: px2rem($breakpoint-xl)) {
+      @content;
+    }
+  } @else if $bp == l {
+    @media only screen and (min-width: px2rem($breakpoint-l)) {
+      @content;
+    }
+  } @else if $bp == m {
+    @media only screen and (min-width: px2rem($breakpoint-m)) {
+      @content;
+    }
+  } @else if $bp == s {
+    @media only screen and (min-width: px2rem($breakpoint-s)) {
+      @content;
+    }
+  } @else if $bp == xs {
+    @media only screen and (min-width: px2rem($breakpoint-xs)) {
+      @content;
+    }
+  } @else {
+    @media only screen and (min-width: $bp) {
+      @content;
+    }
+  }
+}
+
+/**
+ * Max-width breakpoints.
+ *
+ * @param {string} $bp
+ *   Breakpoint size.
+ *
+ * @group mixins
+ */
+@mixin upto-breakpoint($bp) {
+  @if $bp == xl {
+    @media only screen and (max-width: px2em($breakpoint-xl - 1)) {
+      @content ;
+    }
+  } @else if $bp == l {
+    @media only screen and (max-width: px2rem($breakpoint-l - 1)) {
+      @content;
+    }
+  } @else if $bp == m {
+    @media only screen and (max-width: px2em($breakpoint-m - 1)) {
+      @content;
+    }
+  } @else if $bp == s {
+    @media only screen and (max-width: px2em($breakpoint-s - 1)) {
+      @content;
+    }
+  } @else if $bp == xs {
+    @media only screen and (max-width: px2em($breakpoint-xs - 1)) {
+      @content;
+    }
+  } @else {
+    @media only screen and (max-width: ($bp - 1)) {
+      @content;
+    }
+  }
+}
+
+/**
+ * Clearing floats.
+ *
+ * @group mixins
+ */
+@mixin clearfix {
+  &::after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+}
+
+/**
+ * Visually hiding content.
+ *
+ * @group mixins
+ */
+@mixin visually-hidden {
+  position: absolute !important;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  width: 1px;
+  height: 1px;
+  word-wrap: normal;
+}
+
+/**
+ * Print styles.
+ *
+ * @group mixins
+ */
+@mixin print {
+  @media print {
+    @content;
+  }
+}
+
+/**
+ * Hiding for print.
+ *
+ * @group mixins
+ */
+@mixin print-hide {
+  @media print {
+    display: none !important;
+  }
+}
+
+/**
+ * Font smoothing.
+ *
+ * @param {string} $value
+ *   Font smoothing value.
+ *
+ * @group mixins
+ */
+// stylelint-disable no-vendor-prefixes
+@mixin font-smoothing($value: antialiased) {
+  @if $value == antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  } @else {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
+}
+// stylelint-enable no-vendor-prefixes
+
+/**
+ * Removes default ul/ol styling.
+ *
+ * @group mixins
+ */
+@mixin list-reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin: 0;
+  }
+}
+
+/**
+ * Reset button styles.
+ *
+ * @group mixins
+ */
+@mixin button-reset {
+  padding: 0;
+  border: 0;
+  background: none;
+
+  appearance: none;
+  -webkit-tap-highlight-color: transparent; // stylelint-disable-line no-vendor-prefixes
+}

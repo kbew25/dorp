@@ -1,0 +1,37 @@
+/**
+ * @file
+ * Messages.
+ */
+
+// stylelint-disable force-element-nesting
+.messages {
+  margin-bottom: 2em;
+  padding: 1em 1em 1em 2.5em;
+  border: 1px solid;
+  background-position: 0.8em center;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li + li {
+      margin-top: 1em;
+    }
+  }
+
+  &--status {
+    color: $messages--status;
+    background-color: $messages--status--bg;
+  }
+
+  &--warning {
+    color: $messages--warning;
+    background-color: $messages--warning--bg;
+  }
+
+  &--error {
+    color: $messages--error;
+    background-color: $messages--error--bg;
+  }
+}

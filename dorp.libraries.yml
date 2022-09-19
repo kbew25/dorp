@@ -1,0 +1,9 @@
+global-styling:
+  css:
+    theme:
+      dist/style.css: {}
+
+# Uncomment for global JS
+# global-js:
+#   js:
+#     dist/js/script.js: {}

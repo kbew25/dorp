@@ -1,0 +1,162 @@
+/**
+ * @file
+ * Grid.
+ *
+ * Note: Variables for the grid system is set in _variables.scss under Grid.
+ */
+
+/**
+ * Calculate column width depending on amount of gutters.
+ *
+ * @param {number} $columns
+ *   Number of columns.
+ * @param {number} $gutters
+ *   Number of gutters.
+ * @param {number} $container-cols
+ *   Container columns.
+ * @return {number} Total width.
+ *
+ * @example: width: calc--width($columns, $gutters, $container-cols);
+ * @group grid
+ */
+@function calc--width($columns, $gutters, $container-cols: $column-count, $width--gutter: $width--gutter) {
+  $container-gutters: $container-cols - 1;
+  $gutters-total: $width--gutter * $container-gutters;
+
+  $width: calc((#{$columns} * ((100% - #{$gutters-total}) / #{$container-cols})) + (#{$gutters} * #{$width--gutter}));
+
+  @return $width;
+}
+
+/**
+ * Calculate column width including gutters.
+  *
+ * @param {number} $columns
+ *   Number of columns.
+ * @param {number} $gutters
+ *   Number of gutters.
+ * @param {number} $container-cols
+ *   Container columns.
+ * @return {number} Total max-width.
+ *
+ * @example: max-width: calc--max-width($columns, $gutters, $container-cols,
+ * $outside-padding: true);
+ * @group grid
+ */
+@function calc--max-width($columns, $gutters, $container-cols: $column-count, $outside-padding: true) {
+  $width--column: (($container-width) - ($width--gutter * ($column-count - 1))) / $column-count;
+  $max-width: ($width--column * $columns) + ($width--gutter * $gutters);
+
+  @if $outside-padding == true {
+    @return $max-width + ($outside--gutter * 2);
+  } @else {
+    @return $max-width;
+  }
+}
+
+/**
+ * Container of the grid system - usually the page.
+ *
+ * @param {number} $columns
+ *   Number of columns.
+ * @param {number} $gutters
+ *   Number of gutters.
+ * @param {bool} $outside-padding
+ *   TRUE/FALSE outside padding.
+ *
+ * @example:
+ *  @include container; - Default
+ *  @include container(8); - Spans 8 columns of '12'.
+ *  @include container($outside-padding: false); - No outside padding.
+ * @group grid
+ */
+@mixin container($columns: $column-count, $gutters: $columns - 1, $outside-padding: true) {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: calc--max-width($columns, $gutters, $outside-padding: $outside-padding);
+  width: 100%;
+
+  @if $outside-padding == true {
+    padding-left: $outside--gutter;
+    padding-right: $outside--gutter;
+  }
+}
+
+/**
+ * Row mixin - Parent container for the columns.
+ *
+ * @example: @include row;
+ * @group grid
+ */
+@mixin row() {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+/**
+ * Column span.
+ * e.g. col(8) = the width 8 columns and 7 gutters.
+ *
+ * @param {number} $columns
+ *   Number of columns.
+ * @param {number} $container-cols
+ *   Container columns.
+ * @param {number} $width--gutter
+ *   Gutter width.
+ *
+ * @example:
+ *  @include col(8); - Width: 8 cols & 7 gutters
+ *  @include col(4, 4, 8); - Width: 4 cols & 4 gutters with a 8 column container
+ * @group grid
+ */
+@mixin col($columns, $gutters: $columns - 1, $container-cols: $column-count, $width--gutter: $width--gutter) {
+  // Could pass gutter widths in media queries. 10px on mobile, 20px on desktop.
+  width: calc--width($columns, $gutters, $container-cols, $width--gutter);
+}
+
+/**
+ * Column skip.
+ * e.g. skip(3) = the width of 3 columns and 3 gutters.
+ *
+ * @param {number} $columns
+ *   Number of columns.
+ * @param {string} $property
+ *   Property - margin|padding.
+ * @param {string} $side
+ *   Side - left|right.
+ * @param {number} $gutters
+ *   Number of gutters.
+ * @param {number} $container-cols
+ *   Container columns.
+ *
+ * @example:
+ *  @include skip(8); - margin-left: 8 cols & 7 gutters.
+ *  @include skip(4, 'padding', 'right', 4, 8); - padding-right: 4 cols & 4
+ *  gutters with a 8 column container.
+ * @group grid
+ */
+@mixin skip($columns,  $property: 'margin', $side: 'left', $gutters: $columns, $container-cols: 12) {
+  #{$property}-#{$side}: calc--width($columns, $gutters, $container-cols);
+}
+
+// Styleguide Grid Example.
+.sgt-container {
+  @include container;
+  background-color: rgba(0, 0, 50, 0.2);
+  box-sizing: content-box;
+  margin: 0 -40px;
+
+  .sgt-row {
+    @include row;
+
+    .sgt-col {
+      @include col(1);
+    }
+  }
+}
+
+// Page container.
+.layout-container {
+  @include container;
+}

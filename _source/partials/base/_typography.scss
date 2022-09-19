@@ -1,0 +1,91 @@
+/**
+ * @file
+ * Typography.
+ */
+
+/* Base. */
+body {
+  @include font-smoothing;
+  color: $black;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: 1.5;
+}
+
+/* Headings. */
+h1,
+.h1,
+%h1,
+h2,
+.h2,
+%h2,
+h3,
+.h3,
+%h3,
+h4,
+.h4,
+%h4,
+h5,
+.h5,
+%h5,
+h6,
+.h6,
+%h6 {
+  margin-top: 0;
+  line-height: 1.125;
+
+  a {
+    color: inherit;
+  }
+}
+
+h1,
+.h1,
+%h1 {
+  font-size: 2.5em;
+}
+
+h2,
+.h2,
+%h2 {
+  font-size: 2em;
+}
+
+h3,
+.h3,
+%h3 {
+  font-size: 1.5em;
+}
+
+h4,
+.h4,
+%h4 {
+  font-size: 1.25em;
+}
+
+h5,
+.h5,
+%h5,
+h6,
+.h6,
+%h6 {
+  font-size: 1em;
+}
+
+/* Links. */
+a {
+  color: inherit;
+
+  &:hover {
+    color: inherit;
+  }
+
+  &:active {
+    color: inherit;
+  }
+}
+
+/* Text. */
+p {
+  margin-top: 0;
+}

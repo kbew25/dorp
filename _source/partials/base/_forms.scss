@@ -1,0 +1,23 @@
+/**
+ * @file
+ * Form elements.
+ */
+
+// stylelint-disable force-attribute-nesting
+
+/* Form fields */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="url"],
+input[type="search"],
+input[type="submit"],
+textarea,
+select {
+  display: inline-block;
+  width: 100%;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  appearance: none;
+}

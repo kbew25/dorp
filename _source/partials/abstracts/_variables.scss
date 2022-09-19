@@ -1,0 +1,54 @@
+/**
+ * @file
+ * Variables.
+ */
+
+/**
+ * Font sizing.
+ *
+ * $default-font-size is defined in _functions.scss.
+ */
+$font-size-base:        $default-font-size * 1px;
+
+
+/* Font families. */
+$font-family-sans:      sans-serif;
+$font-family-serif:     serif;
+
+$font-family-base:      $font-family-sans;
+
+
+/**
+ * Breakpoints.
+ *
+ * These are used for breakpoint() in _mixins.scss.
+ */
+$breakpoint-xs:         480 !default;
+$breakpoint-s:          600 !default;
+$breakpoint-m:          768 !default;
+$breakpoint-l:          1024 !default;
+$breakpoint-xl:         1200 !default;
+
+
+/**
+ * Grid.
+ *
+ * These are used in _grid.scss.
+ */
+$column-count:          12;
+$container-width:       1200px; // Not including outside gutters.
+$width--gutter:         20px;
+$width--gutter-half:    $width--gutter / 2;
+$outside--gutter:       40px;
+
+
+/**
+ * Z-index.
+ *
+ * A sass map for z() in _functions.scss.
+ */
+$z-index: (
+  contentAbove: 1,
+  default: 0,
+  contentBelow: -1
+);

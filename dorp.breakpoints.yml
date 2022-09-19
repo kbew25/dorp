@@ -1,0 +1,41 @@
+dorp.x-narrow:
+  label: Extra narrow
+  mediaQuery: ''
+  weight: 1
+  multipliers:
+    - 1x
+
+dorp.narrow:
+  label: Narrow
+  mediaQuery: 'all and (min-width: 30em)'
+  weight: 2
+  multipliers:
+    - 1x
+
+dorp.medium:
+  label: Medium
+  mediaQuery: 'all and (min-width: 37.5em)'
+  weight: 3
+  multipliers:
+    - 1x
+
+dorp.medium-wide:
+  label: Medium wide
+  mediaQuery: 'all and (min-width: 48em)'
+  weight: 4
+  multipliers:
+    - 1x
+
+dorp.wide:
+  label: Wide
+  mediaQuery: 'all and (min-width: 64em)'
+  weight: 4
+  multipliers:
+    - 1x
+
+dorp.x-wide:
+  label: Extra wide
+  mediaQuery: 'all and (min-width: 75em)'
+  weight: 5
+  multipliers:
+    - 1x

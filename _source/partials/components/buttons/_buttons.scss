@@ -1,0 +1,84 @@
+/**
+ * @file
+ * Buttons.
+ */
+
+$button-colors: (
+  primary: (
+    bg: $black,
+    color: $white,
+    hover-bg: lighten($black, 10%),
+    hover-color: $white,
+  ),
+  secondary: (
+    bg: $white,
+    color: $black,
+    hover-bg: darken($white, 10%),
+    hover-color: $black,
+  ),
+  tertiary: (
+    bg: $white,
+    color: $black,
+    hover-bg: darken($white, 10%),
+    hover-color: $black,
+  ),
+  disabled: (
+    bg: $white,
+    color: $black,
+    hover-bg: $white,
+    hover-color: $black,
+  ),
+);
+
+/* Base button. */
+@mixin button {
+  display: inline-block;
+  margin-bottom: px2em(10);
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  border-color: transparent;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+/*
+ * Set button type.
+ *
+ * usage:
+ * @include buttonType(primary);
+*/
+@mixin button-type($type) {
+  color: map-get(map-get($button-colors, $type), color);
+  background: map-get(map-get($button-colors, $type), bg);
+
+  &:focus,
+  &:hover {
+    color: map-get(map-get($button-colors, $type), hover-color);
+    background: map-get(map-get($button-colors, $type), hover-bg);
+  }
+}
+
+/* Buttons. */
+.button {
+  @include button;
+
+  &--primary {
+    @include button-type(primary);
+  }
+
+  &--secondary {
+    @include button-type(secondary);
+  }
+
+  &--tertiary {
+    @include button-type(tertiary);
+  }
+
+  &--disabled {
+    @include button-type(disabled);
+    cursor: default;
+  }
+}

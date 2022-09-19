@@ -1,0 +1,37 @@
+{#
+/**
+ * @file
+ * Theme override to display a single page.
+ *
+ * Regions:
+ * - page.header: Items for the header region.
+ * - page.primary_menu: Items for the primary menu region.
+ * - page.content: The main content of the current page.
+ * - page.footer: Items for the footer region.
+ *
+ * @see template_preprocess_page()
+ * @see html.html.twig
+ */
+#}
+<div class="layout-container">
+
+  {% if page.header %}
+    {% include "@dorp/header/header.twig" %}
+  {% endif %}
+
+  {{ page.primary_menu }}
+
+  <main role="main">
+    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+
+    <div class="layout-content">
+      {{ page.content }}
+    </div>{# /.layout-content #}
+
+  </main>
+
+  {% if page.footer %}
+    {% include "@dorp/footer/footer.twig" %}
+  {% endif %}
+
+</div>{# /.layout-container #}
