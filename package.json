@@ -4,7 +4,7 @@
   "description": "Dorp theme",
   "author": {
     "name": "Kirsty Bewley",
-    "url" : "https://github.com/kbew25"
+    "url": "https://github.com/kbew25"
   },
   "license": "ISC",
   "engines": {
@@ -15,9 +15,6 @@
     "cssSource": "./_source",
     "cssOutput": "./dist",
     "jsSource": "./_source/**/*.js",
-    "jsLibSource": "./_source/partials/components/**/*.lib.js",
-    "jsOutput": "./dist/js",
-    "jsLibOutput": "./dist/js/lib",
     "imgSource": "./_source/images/**/*",
     "svgs": "./_source/icons",
     "imgOutput": "./dist/images",
@@ -27,8 +24,6 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.7",
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
     "imagemin-cli": "^7.0.0",
     "node-sass": "^7.0.1",
     "node-sass-glob-importer": "^5.3.2",
@@ -59,19 +54,16 @@
     "svg:clean": "find dist/images -name \"*.svg\" -type f -delete",
     "svgo": "if [ -d $npm_package_config_svgs ]; then mkdir -p $npm_package_config_imgOutput && svgo --config=\".svgo.config.js\" -f $npm_package_config_svgs -o $npm_package_config_imgOutput; fi",
     "//3": "<!-- Scripts -->",
-    "jslint": "if [ -d $PROJECT_ROOT/${DOCROOT:-/docroot}/$npm_package_config_coreModules ]; then NODE_PATH=$NODE_PATH:$PROJECT_ROOT/${DOCROOT:-/docroot}/$npm_package_config_coreModules node $PROJECT_ROOT/${DOCROOT:-/docroot}/$npm_package_config_eslint --ext .js --no-eslintrc --config $PROJECT_ROOT/${DOCROOT:-/docroot}/$npm_package_config_eslintConfig $npm_package_config_jsSource; else echo \"./core/node_modules not found. Try yarn install:core\" && exit 1; fi",
-    "babel": "mkdir -p $npm_package_config_jsOutput && babel $npm_package_config_jsSource --ignore \"$npm_package_config_jsLibSource\" -o $npm_package_config_jsOutput/script.js",
-    "babel_libs": "libs=`find ./_source -name '*.lib.js'`; if [ ${#libs[@]} -gt 0 ]; then mkdir -p $npm_package_config_jsLibOutput && cp $npm_package_config_jsLibSource $npm_package_config_jsLibOutput && babel $npm_package_config_jsLibOutput --out-dir $npm_package_config_jsLibOutput; fi",
+    "lint:js": "if [ -d $PROJECT_ROOT/${DOCROOT:-/docroot}/$npm_package_config_coreModules ]; then NODE_PATH=$NODE_PATH:$PROJECT_ROOT/${DOCROOT:-/docroot}/$npm_package_config_coreModules node $PROJECT_ROOT/${DOCROOT:-/docroot}/$npm_package_config_eslint --ext .js --no-eslintrc --config $PROJECT_ROOT/${DOCROOT:-/docroot}/$npm_package_config_eslintConfig $npm_package_config_jsSource; else echo \"./core/node_modules not found. Try yarn install:core\" && exit 1; fi",
     "//4": "<!-- Build -->",
     "build:css": "yarn run scsslint && yarn run scss && yarn run postcss",
-    "build:js": "yarn run jslint && yarn run babel && yarn run babel_libs",
     "build:assets": "yarn run images && yarn run svgo",
-    "build": "yarn run build:js && yarn run build:assets && yarn run build:css",
+    "build": "yarn run lint:js && yarn run build:assets && yarn run build:css",
     "//5": "<!-- Watch -->",
     "watch:icons": "onchange -p 100 $npm_package_config_svgs -- yarn run build:assets",
     "watch:css": "onchange -p 100 $npm_package_config_cssSource/**/*.scss -- yarn run build:css",
-    "watch:js": "onchange -p 100 $npm_package_config_jsSource -- yarn run build:js",
     "watch": "run-p watch:css watch:js watch:icons"
   },
-  "prettier": "../../../core/.prettierrc.json"
+  "prettier": "../../../core/.prettierrc.json",
+  "dependencies": {}
 }

@@ -22,7 +22,11 @@ libraries:
 components:
   namespaces:
     dorp:
-      - _source/partials/components
+      - _source
+    components:
+      - _source/components
+    patterns:
+      - _source/patterns
   # assets:
   #   paths:
   #     - dist/images

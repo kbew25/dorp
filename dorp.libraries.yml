@@ -6,4 +6,4 @@ global-styling:
 # Uncomment for global JS
 # global-js:
 #   js:
-#     dist/js/script.js: {}
+#     _source/scripts/global.js: {}
