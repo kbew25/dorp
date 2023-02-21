@@ -57,7 +57,7 @@ $ yarn run build
 
 This command will run the following scripts:
 - `build:css` (compiles scss to css)
-- `build:js` (lints and compiles JS)
+- `lint:js` (lints JS)
 - `build:assets` (minifies theme images, svgs, icons)
 
 ## Compile CSS
@@ -70,16 +70,6 @@ This command will run the following scripts:
 - `scss` (compiles SCSS files from `_source` folder into a single `style.css` file placed in `dist` folder)
 - `postcss` (adds vendor prefixes to `dist/style.css` file for target browsers defined in `.browserlistrc` file).
 
-## Compile JS
-```bash
-$ yarn run build:js
-```
-
-This command will run the following scripts:
-- `jslint` (checks code in JS files against a set of rules defined in Drupal core's `.eslintrc.json`)
-- `babel` (compiles ECMAScript 6 code from JS files in `_source` folder into a single, ECMAScript 5 compatible JS file in `dist/js` folder)
-
-
 ## Watch for changes:
 
 ### CSS:
@@ -87,17 +77,12 @@ This command will run the following scripts:
 $ yarn run watch:css
 ```
 
-### JS
-```bash
-$ yarn run watch:js
-```
-
 ### All:
 ```bash
 $ yarn run watch
 ```
 
-This command will run css & js changes.
+This command will run css.
 
 ## Minify images:
 ```bash
@@ -106,11 +91,11 @@ $ yarn run images
 
 This command will run the following scripts:
 - `images:clean` (deletes all images from `dist/images` folder)
-- `images:minify` (minifies all images from `_source/images` folder and places them in `dist/images`)
+- `images:minify` (minifies all images from `_source/assets/images` folder and places them in `dist/images`)
 
 
 ## SVGs:
-All SVG icons should be placed in the `_source/icons` directory.
+All SVG icons should be placed in the `_source/assets/icons` directory.
 
 When `yarn run build` task is run, SVGs in that folder will be cleaned and optimised (all redundant and useless information will be removed, IDs and classes will be prefixed with the SVG filename or an arbitrary string, etc.) - these options are set in the .svgo.config.js file.
 
@@ -127,27 +112,24 @@ See [https://github.com/TrySound/postcss-inline-svg](https://github.com/TrySound
 # Folder structure
 ```
 |- _source/
-| |- icons/         # contains all SVG icons
-| |- images/        # contains all theme images
-| |- partials/
-| | |- abstracts/   # contains theme variables, functions & mixins
-| | |- base/        # contains styling for basic elements - forms, text, headings, etc.
-| | |- components/  # each component folder contains its Twig, SCSS, and JS
-| | | |- header/
-| | | |- footer/
-| | | └─ [...]
-| | |- layout/      # contains styling for regions
-| | └─ pages/       # contains page specific styling
-| |- script.js      # theme's main JS file, contains globally used scripts that are not component-specific
-| └─ style.scss     # theme's main sass file
-|- dist/            # contains compiled assets
-| |- images/        # minified theme images
-| |- js/            # compiled JS
-| └─ style.css      # compiled CSS
-|- templates/       # Drupal twig templates. These will `@include` the templates found in `_source/partials/components/`
-|- .browserslistrc  # defines target browsers
-|- .babelrc         # babel config
-└─ .sass-lint.yml   # SASS linting rules
+| |- abstracts/        # contains theme variables, functions & mixins
+| |- assets/
+| | |- icons/          # contains all SVG icons
+| | └─ images/         # contains all theme images
+| |- base/             # contains styling for basic elements - forms, text, headings, etc.
+| |- components/       # each component folder contains its Twig, SCSS, and JS
+| | └─ [...]
+| |- patterns/
+| | └─ [...]
+| |- scripts/
+| | └─ global.js       # theme's main JS file, contains globally used scripts that are not component-specific
+| └─ style.scss        # theme's main sass file
+|- dist/
+| |- images/           # minified theme images
+| └─ style.css         # compiled CSS
+|- templates/          # Drupal twig templates. These will `@include` the templates found in `_source/partials/components/`
+|- .browserslistrc     # defines target browsers
+└─ .stylelintrc.json   # SASS linting rules
 ```
 
 # Grid framework
