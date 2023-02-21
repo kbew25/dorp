@@ -4,9 +4,9 @@
   ],
   "ignoreFiles": [
     "_source/style.scss",
-    "_source/partials/abstracts/_mixins.scss",
-    "_source/partials/abstracts/_variables.scss",
-    "_source/partials/base/_grid.scss"
+    "_source/abstracts/_mixins.scss",
+    "_source/abstracts/_variables.scss",
+    "_source/base/_grid.scss"
   ],
   "plugins": [
     "stylelint-scss",

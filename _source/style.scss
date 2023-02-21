@@ -4,10 +4,13 @@
  */
 
 /* Abstracts. */
-@import 'partials/abstracts/**/*.scss';
+@import 'abstracts/**/*.scss';
 
 /* Base. */
-@import 'partials/base/**/*.scss';
+@import 'base/**/*.scss';
 
 /* Components. */
-@import 'partials/components/**/*.scss';
+@import 'components/**/*.scss';
+
+/* Patterns. */
+@import 'patterns/**/*.scss';
