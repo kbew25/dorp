@@ -17,7 +17,7 @@
 # Prerequisites
 This theme assumes that you have:
 - [Node](https://nodejs.org) >= 16.0.0
-- Drupal [Component Library](https://www.drupal.org/project/components) module installed and enabled (to register and use custom Twig namespaces for Twig files in `_source/` folder - see `dorp.info.yml` file)
+- Drupal [Component Library](https://www.drupal.org/project/components) module installed and enabled (to register and use custom Twig namespaces for Twig files in `src/` folder - see `dorp.info.yml` file)
 
 # QuickStart
 First you'll need to install all required packages for the theme and core:
@@ -67,7 +67,7 @@ $ yarn run build:css
 
 This command will run the following scripts:
 - `scsslint` (checks code in SCSS files against a set of rules defined in `.stylelintrc.json` file)
-- `scss` (compiles SCSS files from `_source` folder into a single `style.css` file placed in `dist` folder)
+- `scss` (compiles SCSS files from `src` folder into a single `style.css` file placed in `dist` folder)
 - `postcss` (adds vendor prefixes to `dist/style.css` file for target browsers defined in `.browserlistrc` file).
 
 ## Watch for changes:
@@ -91,11 +91,11 @@ $ yarn run images
 
 This command will run the following scripts:
 - `images:clean` (deletes all images from `dist/images` folder)
-- `images:minify` (minifies all images from `_source/assets/images` folder and places them in `dist/images`)
+- `images:minify` (minifies all images from `src/assets/images` folder and places them in `dist/images`)
 
 
 ## SVGs:
-All SVG icons should be placed in the `_source/assets/icons` directory.
+All SVG icons should be placed in the `src/assets/icons` directory.
 
 When `yarn run build` task is run, SVGs in that folder will be cleaned and optimised (all redundant and useless information will be removed, IDs and classes will be prefixed with the SVG filename or an arbitrary string, etc.) - these options are set in the .svgo.config.js file.
 
@@ -111,7 +111,7 @@ See [https://github.com/TrySound/postcss-inline-svg](https://github.com/TrySound
 
 # Folder structure
 ```
-|- _source/
+|- src/
 | |- abstracts/        # contains theme variables, functions & mixins
 | |- assets/
 | | |- icons/          # contains all SVG icons
@@ -127,7 +127,7 @@ See [https://github.com/TrySound/postcss-inline-svg](https://github.com/TrySound
 |- dist/
 | |- images/           # minified theme images
 | └─ style.css         # compiled CSS
-|- templates/          # Drupal twig templates. These will `@include` the templates found in `_source/partials/components/`
+|- templates/          # Drupal twig templates. These will `@include` the templates found in `src/partials/components/`
 |- .browserslistrc     # defines target browsers
 └─ .stylelintrc.json   # SASS linting rules
 ```
