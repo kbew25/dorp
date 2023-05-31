@@ -3,10 +3,10 @@
     "stylelint-config-standard", "stylelint-config-standard-scss"
   ],
   "ignoreFiles": [
-    "_source/style.scss",
-    "_source/abstracts/_mixins.scss",
-    "_source/abstracts/_variables.scss",
-    "_source/base/_grid.scss"
+    "src/style.scss",
+    "src/abstracts/_mixins.scss",
+    "src/abstracts/_variables.scss",
+    "src/base/_grid.scss"
   ],
   "plugins": [
     "stylelint-scss",
